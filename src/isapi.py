@@ -14,6 +14,16 @@ import requests
 from xml.sax.saxutils import escape, unescape
 from requests.auth import HTTPDigestAuth
 
+# Parsing XML durci (CWE-611) : on refuse toute declaration de type de document
+# et toute entite externe. defusedxml ne fait qu'appeler expat avec les garde-fous ;
+# le repli ci-dessous les reproduit si la dependance n'est pas installee.
+try:
+    from defusedxml import ElementTree as _safe_et
+except ImportError:                     # pragma: no cover
+    _safe_et = None
+
+_DOCTYPE = re.compile(r"<\s*(!DOCTYPE|!ENTITY)", re.I)
+
 _NS = re.compile(r'\sxmlns(:\w+)?="[^"]+"')
 
 
@@ -22,8 +32,20 @@ class IsapiError(Exception):
 
 
 def parse_xml(text: str) -> ET.Element:
-    """Parse une reponse ISAPI en retirant le namespace (sinon findall ne trouve rien)."""
-    return ET.fromstring(_NS.sub("", text).encode("utf-8"))
+    """Parse une reponse ISAPI en retirant le namespace (sinon findall ne trouve rien).
+
+    Les reponses viennent d'un equipement du reseau, pas d'une source de confiance :
+    aucune DTD ni entite externe n'est acceptee (XXE / expansion d'entites).
+    """
+    propre = _NS.sub("", text)
+    if _DOCTYPE.search(propre):
+        raise IsapiError("reponse XML refusee : declaration de type de document")
+    if _safe_et is not None:
+        try:
+            return _safe_et.fromstring(propre.encode("utf-8"))
+        except Exception as e:                        # DefusedXmlException incluse
+            raise IsapiError(f"XML invalide : {type(e).__name__}") from None
+    return ET.fromstring(propre.encode("utf-8"))
 
 
 def t(el, path, default=None):

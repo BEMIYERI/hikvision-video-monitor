@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Trafic en clair interdit par defaut. Seuls les serveurs Hikvision Video Monitor
+     declares ici (reseau local) sont joints en HTTP : le reste de l'appareil, et toute
+     destination externe, exigent HTTPS. Ajouter l'IP du serveur si elle change. -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">192.168.88.80</domain>
+        <domain includeSubdomains="false">192.168.88.72</domain>
+        <domain includeSubdomains="false">127.0.0.1</domain>
+        <domain includeSubdomains="false">localhost</domain>
+    </domain-config>
+</network-security-config>

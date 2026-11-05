@@ -17,6 +17,7 @@ import socket
 from logging.handlers import RotatingFileHandler
 import sys
 import threading
+import uuid
 import time
 from datetime import datetime, timedelta, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -173,6 +174,21 @@ class Monitor:
 def make_handler(monitor: Monitor):
     store = monitor.store
 
+    SECURITY_HEADERS = {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "Referrer-Policy": "no-referrer",
+        "Permissions-Policy": "geolocation=(), microphone=(), camera=(), payment=()",
+        "Cross-Origin-Opener-Policy": "same-origin",
+        "Cross-Origin-Resource-Policy": "same-origin",
+        # script-src inline : le dashboard est une page unique auto-contenue
+        "Content-Security-Policy": (
+            "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; "
+            "img-src 'self' data: blob:; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; "
+            "base-uri 'none'; form-action 'self'; object-src 'none'"
+        ),
+    }
+
     class Handler(BaseHTTPRequestHandler):
         _role = None
         server_version = "hikvision-monitor/1.0"
@@ -182,12 +198,16 @@ def make_handler(monitor: Monitor):
 
         def _send(self, code, body, ctype="application/json; charset=utf-8", extra=None):
             data = body if isinstance(body, bytes) else body.encode("utf-8")
-            extra = extra or {}
+            extra = dict(extra or {})
             self.send_response(code)
             self.send_header("Content-Type", ctype)
             self.send_header("Content-Length", str(len(data)))
             if "Cache-Control" not in extra:
                 self.send_header("Cache-Control", "no-store")
+            # en-tetes de securite : la page n'a besoin d'aucune ressource externe
+            for cle, valeur in SECURITY_HEADERS.items():
+                if cle not in extra:
+                    self.send_header(cle, valeur)
             for k, v in extra.items():
                 self.send_header(k, v)
             self.end_headers()
@@ -293,8 +313,10 @@ def make_handler(monitor: Monitor):
                     try:
                         data, source = capture_image(monitor.settings, nvr, channel)
                     except isapi.IsapiError as e:
-                        log.warning("capture %s CH%s : %s", nvr_id, channel, e)
-                        return self._json({"error": str(e)}, 502)
+                        # le detail (adresse de l'equipement, delai, reponse HTTP) reste au journal
+                        ref = uuid.uuid4().hex[:8]
+                        log.warning("capture %s CH%s echouee [%s] : %s", nvr_id, channel, ref, e)
+                        return self._json({"error": "capture indisponible", "ref": ref}, 502)
                     log.info("capture %s CH%s depuis %s (%d o)", nvr_id, channel, source, len(data))
                     if (q.get("save") or ["0"])[0] in ("1", "true"):
                         try:

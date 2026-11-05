@@ -97,6 +97,14 @@ python tests/test_store.py     # 9 tests
 python tests/test_export.py    # 7 tests
 ```
 
+## Sécurité
+
+- Trafic en clair limité aux IP du serveur déclarées (`network_security_config.xml`) ;
+- parsing XML durci : toute `DOCTYPE`/`ENTITY` est refusée (XXE, expansion d'entités) ;
+- erreurs renvoyées de façon générique, détail conservé côté journal ;
+- CSP, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` sur le dashboard et le site ;
+- jetons stockés en SHA-256, révocables individuellement.
+
 ## Limites connues
 
 - Le NVR ne renvoie qu'un JPEG du sous-flux (704×576) : les captures passent par la caméra.
