@@ -35,17 +35,19 @@ def parse_xml(text: str) -> ET.Element:
     """Parse une reponse ISAPI en retirant le namespace (sinon findall ne trouve rien).
 
     Les reponses viennent d'un equipement du reseau, pas d'une source de confiance :
-    aucune DTD ni entite externe n'est acceptee (XXE / expansion d'entites).
+    defusedxml est obligatoire, et aucune DTD ni entite n'est acceptee (XXE, expansion).
+    Il n'existe volontairement aucun repli vers le parseur standard : sans defusedxml,
+    la collecte s'arrete au lieu de parser en confiance.
     """
+    if _safe_et is None:                              # dependance manquante
+        raise IsapiError("defusedxml absent : parsing XML refuse")
     propre = _NS.sub("", text)
     if _DOCTYPE.search(propre):
         raise IsapiError("reponse XML refusee : declaration de type de document")
-    if _safe_et is not None:
-        try:
-            return _safe_et.fromstring(propre.encode("utf-8"))
-        except Exception as e:                        # DefusedXmlException incluse
-            raise IsapiError(f"XML invalide : {type(e).__name__}") from None
-    return ET.fromstring(propre.encode("utf-8"))
+    try:
+        return _safe_et.fromstring(propre.encode("utf-8"))
+    except Exception as e:                            # DefusedXmlException incluse
+        raise IsapiError(f"XML invalide : {type(e).__name__}") from None
 
 
 def t(el, path, default=None):

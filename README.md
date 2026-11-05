@@ -104,6 +104,9 @@ python tests/test_export.py    # 7 tests
 - erreurs renvoyées de façon générique, détail conservé côté journal ;
 - CSP, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` sur le dashboard et le site ;
 - jetons stockés en SHA-256, révocables individuellement.
+- `defusedxml` obligatoire : sans lui, le parsing XML est refusé (aucun repli) ;
+- dépendances sans avis OSV : `requests>=2.34.2`, `python-dotenv>=1.2.4`.
+- politique de confidentialité complète (responsable du traitement, droits, réclamation).
 
 ## Limites connues
 
