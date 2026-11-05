@@ -60,7 +60,7 @@ Exécutable autonome : `python -m PyInstaller --onefile --name HikvisionMonitor 
 
 ```ini
 NVR_USER=utilisateur
-NVR_PASS=motdepasse
+NVR_PASS=A-REMPLIR
 NVR1=SITE-A|192.168.1.10|80|Batiment A
 POLL_INTERVAL=60
 DASHBOARD_HOST=0.0.0.0
