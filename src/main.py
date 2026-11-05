@@ -32,7 +32,7 @@ from store import Store                         # noqa: E402
 
 # PWA assets (inline for reliability in sandboxed environment)
 MANIFEST = '''{"name":"Hikvision CCTV Monitor","short_name":"CCTV Monitor","description":"Surveillance vidéo Hikvision - monitoring des NVR et caméras","start_url":"/","display":"standalone","background_color":"#0f1720","theme_color":"#4493f8","orientation":"portrait","icons":[{"src":"/icon-192.svg","sizes":"192x192","type":"image/svg+xml"},{"src":"/icon-512.svg","sizes":"512x512","type":"image/svg+xml"}]}'''
-SW = '''const C="hikvision-monitor-v4",S=["/","/manifest.json","/icon-192.svg"];
+SW = '''const C="hikvision-monitor-v5",S=["/","/app.js","/app.css","/manifest.json","/icon-192.svg"];
 self.addEventListener("install",e=>e.waitUntil(caches.open(C).then(c=>c.addAll(S)).then(()=>self.skipWaiting())));
 self.addEventListener("activate",e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
 // Jamais de cache pour l'API, les captures, les rapports ni l'APK : donnees volatiles et
@@ -182,8 +182,9 @@ def make_handler(monitor: Monitor):
         "Cross-Origin-Opener-Policy": "same-origin",
         "Cross-Origin-Resource-Policy": "same-origin",
         # script-src inline : le dashboard est une page unique auto-contenue
+        # aucun contenu inline : le script et la feuille de style sont des fichiers servis
         "Content-Security-Policy": (
-            "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; "
+            "default-src 'self'; script-src 'self'; style-src 'self'; "
             "img-src 'self' data: blob:; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; "
             "base-uri 'none'; form-action 'self'; object-src 'none'"
         ),
@@ -274,6 +275,14 @@ def make_handler(monitor: Monitor):
                     return self._send(200, fp.read_bytes(),
                                       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                                       {"Content-Disposition": f'attachment; filename="{name}"'})
+                if path in ("/app.js", "/app.css"):
+                    nom = path.lstrip("/")
+                    fichier = STATIC / nom
+                    if not fichier.is_file():
+                        return self._json({"error": "introuvable"}, 404)
+                    ctype = ("application/javascript; charset=utf-8" if nom.endswith(".js")
+                             else "text/css; charset=utf-8")
+                    return self._send(200, fichier.read_bytes(), ctype, {"Cache-Control": "no-cache"})
                 if path in ("/landing", "/landing.html"):
                     for candidat in (ROOT / "landing.html", RESOURCES / "landing.html"):
                         if candidat.is_file():
