@@ -8,15 +8,15 @@ Endpoints valides le 14/10 sur les 5 NVR DS-7764NI-M4 (docs/DISCOVERY_2026-10-14
 """
 import json
 import re
-import xml.etree.ElementTree as ET
+from typing import Any
 
 import requests
 from xml.sax.saxutils import escape, unescape
 from requests.auth import HTTPDigestAuth
 
-# Parsing XML durci (CWE-611) : on refuse toute declaration de type de document
-# et toute entite externe. defusedxml ne fait qu'appeler expat avec les garde-fous ;
-# le repli ci-dessous les reproduit si la dependance n'est pas installee.
+# Parsing XML durci (CWE-611) : on refuse toute declaration de type de document et toute
+# entite externe. defusedxml est obligatoire : sans lui, parse_xml refuse de parser
+# (aucun repli vers le parseur standard, qui accepterait les entites).
 try:
     from defusedxml import ElementTree as _safe_et
 except ImportError:                     # pragma: no cover
@@ -31,7 +31,7 @@ class IsapiError(Exception):
     """Erreur exploitable : message court, sans secret."""
 
 
-def parse_xml(text: str) -> ET.Element:
+def parse_xml(text: str) -> Any:
     """Parse une reponse ISAPI en retirant le namespace (sinon findall ne trouve rien).
 
     Les reponses viennent d'un equipement du reseau, pas d'une source de confiance :
