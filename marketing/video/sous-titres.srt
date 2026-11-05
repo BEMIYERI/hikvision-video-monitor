@@ -1,0 +1,107 @@
+1
+00:00:00,000 --> 00:00:04,663
+Vos caméras filment. Mais qui vérifie qu'elles fonctionnent encore
+
+2
+00:00:04,663 --> 00:00:09,325
+? Hikvision Video Monitor surveille jusqu'à mille vingt-quatre caméras
+
+3
+00:00:09,325 --> 00:00:12,952
+et seize enregistreurs, depuis un seul écran.
+
+4
+00:00:12,952 --> 00:00:16,907
+Une caméra tombe. Le disque sature. L'enregistrement s'arrête. Personne
+
+5
+00:00:16,907 --> 00:00:20,862
+ne le voit. Et le jour où il faut
+
+6
+00:00:20,862 --> 00:00:24,817
+rendre des comptes, il faut tout recompter à la
+
+7
+00:00:24,817 --> 00:00:25,256
+main.
+
+8
+00:00:25,256 --> 00:00:29,972
+Notre agent interroge vos enregistreurs Hikvision existants, en lecture
+
+9
+00:00:29,972 --> 00:00:34,688
+seule, toutes les soixante secondes. Aucune caméra à remplacer.
+
+10
+00:00:34,688 --> 00:00:38,880
+Aucun cloud. Rien ne sort de votre réseau.
+
+11
+00:00:38,880 --> 00:00:43,780
+En un écran : chaque caméra, son enregistreur, sa
+
+12
+00:00:43,780 --> 00:00:48,679
+définition, sa focale, son statut et l'heure de son
+
+13
+00:00:48,679 --> 00:00:49,768
+dernier contact.
+
+14
+00:00:49,768 --> 00:00:55,010
+Filtrez par enregistreur, par statut, par définition ou par
+
+15
+00:00:55,010 --> 00:01:00,251
+focale. Deux mégapixels, quatre mégapixels, huit millimètres : la
+
+16
+00:01:00,251 --> 00:01:04,328
+question trouve sa réponse en un clic.
+
+17
+00:01:04,328 --> 00:01:08,951
+Chaque changement est horodaté. Trente-deux mille quatre cents événements
+
+18
+00:01:08,951 --> 00:01:13,574
+sur trente jours, exportables en CSV. Une panne devient
+
+19
+00:01:13,574 --> 00:01:16,656
+un fait daté, pas une impression.
+
+20
+00:01:16,656 --> 00:01:20,629
+Et le rapport que le client attend, calqué sur
+
+21
+00:01:20,629 --> 00:01:24,602
+son modèle, se génère en un clic. Formules et
+
+22
+00:01:24,602 --> 00:01:26,368
+mise en forme conservées.
+
+23
+00:01:26,368 --> 00:01:30,929
+Et en tête du rapport, la synthèse par enregistreur
+
+24
+00:01:30,929 --> 00:01:35,490
+: combien de caméras en ligne, combien hors ligne,
+
+25
+00:01:35,490 --> 00:01:38,024
+et le total calculé automatiquement.
+
+26
+00:01:38,024 --> 00:01:42,988
+Installation en quinze minutes sur un PC ordinaire. Démonstration
+
+27
+00:01:42,988 --> 00:01:47,400
+en ligne et application Android disponibles dès aujourd'hui.

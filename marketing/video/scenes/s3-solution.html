@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px;overflow:hidden}
+body{background:#0b0f19;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;
+     display:flex;align-items:center;justify-content:center}
+.grain{position:fixed;inset:0;background:
+  radial-gradient(1200px 700px at 15% 0%, rgba(34,197,94,.14), transparent 60%),
+  radial-gradient(900px 600px at 85% 100%, rgba(59,130,246,.16), transparent 60%);}
+.wrap{position:relative;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 130px}
+.kicker{font-size:26px;letter-spacing:.18em;text-transform:uppercase;color:#22c55e;font-weight:700;margin-bottom:26px}
+h1{font-size:112px;line-height:1.02;font-weight:800;letter-spacing:-.03em}
+h1 em{font-style:normal;color:#22c55e}
+h2{font-size:84px;line-height:1.08;font-weight:800;letter-spacing:-.025em;margin-bottom:28px}
+p.lead{font-size:40px;color:#94a3b8;line-height:1.4;max-width:1500px}
+.stats{display:flex;gap:70px;margin-top:70px}
+.stat b{display:block;font-size:104px;font-weight:800;color:#22c55e;letter-spacing:-.03em}
+.stat span{font-size:26px;color:#94a3b8}
+.shot{width:1660px;border-radius:16px;border:1px solid #1e293b;box-shadow:0 40px 120px rgba(0,0,0,.65)}
+.cap{margin-top:36px;font-size:32px;color:#94a3b8}
+.cap b{color:#e2e8f0}
+.row{display:flex;gap:34px;margin-top:54px}
+.bad{flex:1;border:1px solid #3f1d1d;background:linear-gradient(180deg,rgba(239,68,68,.10),rgba(239,68,68,.02));
+     border-radius:16px;padding:36px 38px}
+.bad .ic{font-size:46px;margin-bottom:16px}
+.bad h3{font-size:36px;margin-bottom:12px}
+.bad p{font-size:27px;color:#94a3b8;line-height:1.35}
+.flow{display:flex;align-items:center;gap:26px;margin-top:64px}
+.node{border:1px solid #1e293b;background:#111827;border-radius:16px;padding:34px 40px;text-align:center;min-width:300px}
+.node .t{font-size:30px;font-weight:700}
+.node .s{font-size:23px;color:#94a3b8;margin-top:8px}
+.node.hot{border-color:#22c55e;box-shadow:0 0 0 1px rgba(34,197,94,.35),0 0 60px rgba(34,197,94,.18)}
+.arrow{font-size:44px;color:#3b82f6}
+.sheet{background:#fff;color:#111;border-radius:12px;overflow:hidden;width:1620px;box-shadow:0 40px 120px rgba(0,0,0,.6)}
+.sheet .hd{background:#0f2b46;color:#fff;padding:18px 26px;font-size:26px;font-weight:700;letter-spacing:.04em}
+.sheet table{width:100%;border-collapse:collapse;font-size:24px}
+.sheet th{background:#1f4e79;color:#fff;text-align:left;padding:14px 22px;font-weight:600}
+.sheet td{padding:13px 22px;border-bottom:1px solid #e5e7eb}
+.sheet tr:nth-child(even) td{background:#f3f6f9}
+.sheet td.n{text-align:center;font-variant-numeric:tabular-nums}
+.cta{display:flex;align-items:center;gap:26px;margin-top:60px;font-size:34px;color:#94a3b8}
+.pill{background:#22c55e;color:#04170c;font-weight:800;padding:18px 34px;border-radius:12px;font-size:30px}
+</style></head>
+<body><div class="grain"></div><div class="wrap">
+<div class="kicker">La solution</div>
+<h2>Un agent qui interroge<br>vos enregistreurs existants.</h2>
+<div class="flow">
+  <div class="node"><div class="t">NVR Hikvision</div><div class="s">votre matériel, inchangé</div></div>
+  <div class="arrow">→</div>
+  <div class="node hot"><div class="t">Agent de supervision</div><div class="s">lecture seule · toutes les 60 s</div></div>
+  <div class="arrow">→</div>
+  <div class="node"><div class="t">Tableau de bord</div><div class="s">web, mobile, hors ligne</div></div>
+  <div class="arrow">→</div>
+  <div class="node"><div class="t">Rapport Excel</div><div class="s">calqué sur votre modèle</div></div>
+</div>
+<p class="lead" style="margin-top:64px">Aucune caméra à remplacer. Aucun cloud. Rien ne sort de votre réseau.</p></div></body></html>

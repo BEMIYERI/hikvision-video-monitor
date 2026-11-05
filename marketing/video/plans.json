@@ -1,0 +1,47 @@
+[
+  {
+    "plan": "s1-accroche",
+    "duree": 12.95,
+    "texte": "Vos caméras filment. Mais qui vérifie qu'elles fonctionnent encore ? Hikvision Video Monitor surveille jusqu'à mille vingt-quatre caméras et seize enregistreurs, depuis un seul écran."
+  },
+  {
+    "plan": "s2-probleme",
+    "duree": 12.3,
+    "texte": "Une caméra tombe. Le disque sature. L'enregistrement s'arrête. Personne ne le voit. Et le jour où il faut rendre des comptes, il faut tout recompter à la main."
+  },
+  {
+    "plan": "s3-solution",
+    "duree": 13.62,
+    "texte": "Notre agent interroge vos enregistreurs Hikvision existants, en lecture seule, toutes les soixante secondes. Aucune caméra à remplacer. Aucun cloud. Rien ne sort de votre réseau."
+  },
+  {
+    "plan": "s4-tableau",
+    "duree": 10.89,
+    "texte": "En un écran : chaque caméra, son enregistreur, sa définition, sa focale, son statut et l'heure de son dernier contact."
+  },
+  {
+    "plan": "s5-filtres",
+    "duree": 14.56,
+    "texte": "Filtrez par enregistreur, par statut, par définition ou par focale. Deux mégapixels, quatre mégapixels, huit millimètres : la question trouve sa réponse en un clic."
+  },
+  {
+    "plan": "s6-preuve",
+    "duree": 12.33,
+    "texte": "Chaque changement est horodaté. Trente-deux mille quatre cents événements sur trente jours, exportables en CSV. Une panne devient un fait daté, pas une impression."
+  },
+  {
+    "plan": "s7-rapport",
+    "duree": 9.71,
+    "texte": "Et le rapport que le client attend, calqué sur son modèle, se génère en un clic. Formules et mise en forme conservées."
+  },
+  {
+    "plan": "s7b-synthese",
+    "duree": 11.66,
+    "texte": "Et en tête du rapport, la synthèse par enregistreur : combien de caméras en ligne, combien hors ligne, et le total calculé automatiquement."
+  },
+  {
+    "plan": "s8-cta",
+    "duree": 9.38,
+    "texte": "Installation en quinze minutes sur un PC ordinaire. Démonstration en ligne et application Android disponibles dès aujourd'hui."
+  }
+]

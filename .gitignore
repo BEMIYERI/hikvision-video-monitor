@@ -1,0 +1,30 @@
+# Secrets
+config/.env
+.env
+# Donnees generees
+data/
+logs/
+reports/
+# Python
+__pycache__/
+*.pyc
+# Environnements virtuels
+.venv/
+venv/
+# Verrous et fichiers temporaires Excel
+~$*.xlsx
+# Kit de deploiement (contient config/.env : ne jamais versionner)
+dist/
+
+# sorties PyInstaller
+build/
+
+# Android : sources versionnees, artefacts et cle de signature non
+android/build/
+android/dist/
+android/keystore.jks
+android/keystore.properties
+deploy/
+outils/__pycache__/
+marketing/video/work/
+marketing/video/audio/
